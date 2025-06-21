@@ -12,6 +12,8 @@ import Navbar from './components/Navbar'
 import State from './hooks/State'
 import Form from './hooks/Form'
 import Effect from './hooks/Effect'
+import Reducer from './hooks/Reducer'
+ 
 
 function App() {
 
@@ -21,10 +23,11 @@ function App() {
     <Routes>
     <Route path='/' element={<Home />}/>
     <Route path='/about' element={<About />}/>
-    <Route path='/service' element={<Service />}/>
+    <Route path='/services' element={<Service />}/>
     <Route path='/state' element={<State />}/>
     <Route path='/form' element={<Form />}/>
     <Route path='/effect' element={<Effect />}/>
+    <Route path='/reducer' element={<Reducer />}/>
 
     </Routes>
    <Welcome name='Virat' country='India'/> 
