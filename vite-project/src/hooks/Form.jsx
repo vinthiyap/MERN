@@ -1,12 +1,23 @@
 import  { useState } from 'react'
-
+import axios from 'axios'
+import { useEffect } from 'react'
 const Form = () => {
+    
     const [formData,setFormData]=useState({
         name:'',
         email:'',
         password:'',
         department:''
     })
+     const [users,setUsers] = useState([]);
+    const fetchUsers=async()=>{
+        const res = await axios.get('http://localhost:3000/getform')
+        setUsers(res.data)
+        console.log(res)
+    }
+    useEffect(()=>{
+        fetchUsers()
+    },[])
     const handleChange=(e)=>{
         const {name,value}=e.target
         setFormData((prev=>({
@@ -14,9 +25,11 @@ const Form = () => {
             [name]:value
         })))
     }
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
         e.preventDefault()
-        console.log(formData)
+        await axios.post('http://localhost:3000/postform',formData)
+
+        console.log(formData);
     }
   return (
     <div>
@@ -35,6 +48,13 @@ const Form = () => {
             <br />
             <button type="submit">Submit</button>
         </form>
+        <h1>User details</h1>
+        <u1>
+            {users.map((user)=> (
+                 <li key={user._id}>{user.name} | {user.email} |{user.department}</li>
+
+            ))}
+        </u1>
     </div>
   )
 }
