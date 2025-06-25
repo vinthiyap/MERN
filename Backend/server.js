@@ -4,6 +4,8 @@ import mongoose, { deleteModel } from 'mongoose';
 import { connectDB } from './config/db.js'
 import User from './model/user.js'
 import Form from './model/form.js'
+import dotenv from'dotenv'
+dotenv.config();
 const app=express()
 connectDB()
 
